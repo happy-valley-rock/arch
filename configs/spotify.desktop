@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Spotify
+GenericName=Music Player
+Comment=Spotify streaming music client
+Exec=spotify --uri=%u
+Icon=spotify-client
+Terminal=false
+Type=Application
+Categories=Audio;Music;Player;AudioVideo;
+MimeType=x-scheme-handler/spotify;
