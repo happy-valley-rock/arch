@@ -97,15 +97,27 @@ install_all_pkgs() {
   echo -e "\n${BLUE} Install all dependencies${GRAY}"
   install_pkg pacman hyprland
   install_pkg pacman kitty
+  install_pkg pacman dunst
+  install_pkg pacman grim
+  install_pkg pacman qt5-wayland
+  install_pkg pacman qt6-wayland
+  install_pkg pacman slurp
   install_pkg pacman wofi
+  install_Pkg pacman xdg-desktop-portal-hyprland
+  install_pkg pacman polkit-kde-agent
+  install_pkg pacman qt5-wayland
+  install_pkg pacman nautilus
+  install_pkg pacman hyprpaper
+  install_pkg yay hyprshot
+  install_pkg yay hyprlock
+  install_pkg yay swaync
+
   install_pkg pacman waybar
   install_pkg pacman ttf-font-awesome
   install_pkg pacman noto-fonts
   install_pkg pacman noto-fonts-cjk
   install_pkg pacman noto-fonts-emoji
   install_pkg pacman noto-fonts-extra
-  install_pkg pacman nautilus
-  install_pkg pacman hyprpaper
   install_pkg pacman zsh
   install_pkg pacman neovim
   install_pkg pacman yt-dlp
@@ -113,9 +125,6 @@ install_all_pkgs() {
   install_pkg pacman gamemode
   install_pkg pacman mangohud
 
-  install_pkg yay hyprshot
-  install_pkg yay hyprlock
-  install_pkg yay swaync
   install_pkg yay brave-bin
   install_pkg yay steam
   install_pkg yay telegram-desktop-bin
@@ -185,12 +194,12 @@ main() {
   if [[ -z "$USER_INPUT" && -z "$PASS_INPUT" && -z "$EMAIL_INPUT" ]]; then
     echo "The values cant be empty"
   else
-    #set_gpg_key
-    #install_yay
-    #install_snap
-    #update_pkgs_manager
-    #install_drivers
-    #install_all_pkgs
+    set_gpg_key
+    install_yay
+    install_snap
+    update_pkgs_manager
+    install_drivers
+    install_all_pkgs
     set_configs
   fi
 
