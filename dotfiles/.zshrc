@@ -163,7 +163,7 @@ alias update-all-clean='sudo pacman -Syu && yay -Sua && sudo snap refresh && sud
 
 # Disown process
 alias spotify='spotify & disown'
-alias telegram='telegram-desktop-bin & disown'
+alias telegram='telegram-desktop & disown'
 alias notion='brave notion.so & disown'
 alias gpt='brave chatgpt.com & disown'
 alias browser='brave & disown'
