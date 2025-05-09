@@ -70,9 +70,9 @@ install_pkg() {
     else
       echo "$PASS_INPUT" | sudo -S snap install $package
     fi
-    echo -e "${GREEN}<== ${RESET}package installed"
+    echo -e "${GREEN}  ->${RESET}package installed"
   else
-    echo -e "${GREEN}<== ${RESET}already installed"
+    echo -e "${GREEN}  ->${RESET}already installed"
     return 1
   fi
 }
