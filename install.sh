@@ -55,23 +55,27 @@ install_drivers(){
 install_pkg() {
   local package=$2
   local pkg_manager=$1
-  local package_founded=$(which $package | grep -o "not found")
+  local package_founded="_"
+  
+  if [[ "$pkg_manager" == "yay" || "$pkg_manager" == "pacman"  ]]; then
+    package_founded=$(${pkg_manager} -Q $package | grep -o "not found")
+  fi
 
-  if [[ "$package_founded" != "not found" ]]; then
+  if [[ "$package_founded" == "not found" ]]; then
+    if [[ "$pkg_manager" == "yay" ]]; then
+      echo -e "${RESET} [${pkg_manager}] ✅ installing package ${GREEN}$package${GRAY}"
+      yay -S --noconfirm $package
+    elif [[ "$pkg_manager" == "pacman" ]]; then
+      echo -e "${RESET} [${pkg_manager}] ✅ installing package ${GREEN}$package${GRAY}"
+      echo "$PASS_INPUT" | sudo -S pacman -S --noconfirm $package
+    else
+      echo -e "${RESET} [${pkg_manager}]✅ installing package ${GREEN}$package${GRAY}"
+      echo "$PASS_INPUT" | sudo -S snap install $package
+    fi
+  else
     echo -e "${RESET} [${pkg_manager}] ✅ installing package ${GREEN}$package${GRAY}"
     echo " -> Already installed"
     return 1
-  fi
-  
-  if [[ "$pkg_manager" == "yay" ]]; then
-    echo -e "${RESET} [${pkg_manager}] ✅ installing package ${GREEN}$package${GRAY}"
-    yay -S --noconfirm $package
-  elif [[ "$pkg_manager" == "pacman" ]]; then
-    echo -e "${RESET} [${pkg_manager}] ✅ installing package ${GREEN}$package${GRAY}"
-    echo "$PASS_INPUT" | sudo -S pacman -S --noconfirm $package
-  else
-    echo -e "${RESET} [${pkg_manager}]✅ installing package ${GREEN}$package${GRAY}"
-    echo "$PASS_INPUT" | sudo -S snap install $package
   fi
 }
 
