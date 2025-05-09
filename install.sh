@@ -198,9 +198,9 @@ set_configs(){
   git config --global core.excludesfile ~/.gitignore_global
 
   ### zsh
-  chsh -s $(which zsh)
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   cp ${SCRIPT_PATH}/dotfiles/.zshrc ~/.zshrc
+  chsh -s $(which zsh)
 }
 
 # config greeter
