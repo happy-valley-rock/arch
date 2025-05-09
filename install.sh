@@ -167,12 +167,7 @@ set_configs(){
 
   ### spotify
   cp ${SCRIPT_PATH}/configs/spotify.desktop ~/.local/share/applications/spotify.desktop
-  sudo xdg-mime default spotify.desktop x-scheme-handler/spotify
-
-  ### zsh
-  chsh -s $(which zsh)
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  cp ${SCRIPT_PATH}/dotfiles/.zshrc ~/.zshrc
+  echo "$PASS_INPUT" | sudo -S xdg-mime default spotify.desktop x-scheme-handler/spotify
 
   ### neovim
   mkdir -p ~/.config/nvim
@@ -192,6 +187,11 @@ set_configs(){
   git config --global alias.rv 'reset --soft HEAD~1'
   git config --global alias.lg 'log --oneline --graph --decorate --all'
   git config --global core.excludesfile ~/.gitignore_global
+
+  ### zsh
+  chsh -s $(which zsh)
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  cp ${SCRIPT_PATH}/dotfiles/.zshrc ~/.zshrc
 }
 
 # config greeter
