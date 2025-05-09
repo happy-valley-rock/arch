@@ -11,7 +11,7 @@ PASS_INPUT=_
 
 # install yay
 install_yay(){
-  echo -e "\n${BLUE} Installing arch AUR package manager (yay)${GRAY}"
+  echo -e "\n${BLUE}==> Installing arch AUR package manager (yay)${GRAY}"
   echo "$PASS_INPUT" | sudo -S git clone https://aur.archlinux.org/yay-git.git /opt/yay-git
   echo "$PASS_INPUT" | sudo -S chown -R $USER_INPUT:$USER_INPUT /opt/yay-git
   cd /opt/yay-git
@@ -20,7 +20,7 @@ install_yay(){
 
 # install snap
 install_snap(){
-  echo -e "\n${BLUE} Installing snap package manager${GRAY}"
+  echo -e "\n${BLUE}==> Installing snap package manager${GRAY}"
   echo "$PASS_INPUT" | sudo -S git clone https://aur.archlinux.org/snapd.git /opt/snapd
   echo "$PASS_INPUT" | sudo -S chown -R $USER_INPUT:$USER_INPUT /opt/snapd
   cd /opt/snapd
@@ -30,7 +30,7 @@ install_snap(){
 
 # install drivers
 install_drivers(){
-  echo -e "\n${BLUE} Installing drivers${GRAY}"
+  echo -e "\n${BLUE}==> Installing drivers${GRAY}"
   ## graphic drivers
   install_pkg pacman dkms
   install_pkg pacman libva-nvidia-driver
@@ -79,7 +79,7 @@ install_pkg() {
 
 # config gpg keys
 set_gpg_key(){
-  echo -e "\n${BLUE} Set GPG Key${GRAY}"
+  echo -e "\n${BLUE}==> Set GPG Key${GRAY}"
 #  gpg --full-generate-key 
   gpg --batch --gen-key <<EOF
   %echo Generate GPG key
@@ -101,7 +101,7 @@ EOF
 
 # update packages managers
 update_pkgs_manager(){
-  echo -e "\n${BLUE} Update package managers${GRAY}"
+  echo -e "\n${BLUE}==> Update package managers${GRAY}"
   echo "$PASS_INPUT" | sudo -S pacman -Syu --noconfirm
   echo "$PASS_INPUT" | sudo -S yay -Syu --noconfirm
   echo "$PASS_INPUT" | sudo -S snap refresh
@@ -109,7 +109,7 @@ update_pkgs_manager(){
 
 # install  dependencies
 install_all_pkgs() {
-  echo -e "\n${BLUE} Install all dependencies${GRAY}"
+  echo -e "\n${BLUE}==> Install all dependencies${GRAY}"
   
   install_pkg pacman dunst
   install_pkg pacman grim
@@ -162,7 +162,7 @@ install_all_pkgs() {
 
 # configurations
 set_configs(){
-  echo -e "\n${BLUE} Setting some configurations${GRAY}"
+  echo -e "\n${BLUE}==> Setting some configurations${GRAY}"
 
   ## apps config
   mkdir -p /home/$USER_INPUT/.local/share/applications/
@@ -226,14 +226,14 @@ main() {
   if [[ -z "$USER_INPUT" && -z "$PASS_INPUT" && -z "$EMAIL_INPUT" ]]; then
     echo "The values cant be empty"
   else
-    set_gpg_key
-    install_yay
-    install_snap
-    update_pkgs_manager
+    #set_gpg_key
+    #install_yay
+    #install_snap
+    #update_pkgs_manager
     install_drivers
     install_all_pkgs
-    set_configs
-    config_greeter
+    #set_configs
+    #config_greeter
   fi
 
   kill $KEEP_ALIVE_PID
