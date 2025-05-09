@@ -56,7 +56,7 @@ install_pkg() {
   local package=$2
   local pkg_manager=$1
   local package_founded="_"
-  echo -e "${RESET} [${pkg_manager}] ✅ installing package ${GREEN}${package} ==>${GRAY}"
+  echo -e "${GREEN}==>${RESET} [${pkg_manager}] ✅ installing package ${package}${GRAY}"
   
   if [[ "$pkg_manager" == "yay" || "$pkg_manager" == "pacman"  ]]; then
     package_founded=$(${pkg_manager} -Q $package | grep -o "not found")
@@ -70,9 +70,9 @@ install_pkg() {
     else
       echo "$PASS_INPUT" | sudo -S snap install $package
     fi
-    echo "${GREEN}<== package installed"
+    echo -e "${GREEN}<== ${RESET}package installed"
   else
-    echo "${GREEN}<== already installed"
+    echo -e "${GREEN}<== ${RESET}already installed"
     return 1
   fi
 }
