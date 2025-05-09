@@ -4,6 +4,7 @@ GRAY="\033[38;5;250m"
 GREEN="\033[38;5;82m"
 BLUE="\033[36m"
 RESET="\033[0m"
+SCRIPT_PATH="$(pwd)"
 USER_INPUT=_
 EMAIL_INPUT=_
 PASS_INPUT=_
@@ -158,20 +159,20 @@ set_configs(){
   mkdir -p /home/$USER_INPUT/.local/share/applications/
 
   ### hyprland
-  cp -r ./dotfiles/hypr ~/.config/
-  cp -r ./backgrounds ~/
+  cp -r ${SCRIPT_PATH}/dotfiles/hypr ~/.config/
+  cp -r ${SCRIPT_PATH}/backgrounds ~/
 
   ### kitty
-  cp -r ./dotfiles/kitty ~/.config/
+  cp -r ${SCRIPT_PATH}/dotfiles/kitty ~/.config/
 
   ### spotify
-  cp ./configs/spotify.desktop ~/.local/share/applications/spotify.desktop
+  cp ${SCRIPT_PATH}/configs/spotify.desktop ~/.local/share/applications/spotify.desktop
   sudo xdg-mime default spotify.desktop x-scheme-handler/spotify
 
   ### zsh
   chsh -s $(which zsh)
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  cp ./dotfiles/.zshrc ~/.zshrc
+  cp ${SCRIPT_PATH}/dotfiles/.zshrc ~/.zshrc
 
   ### neovim
   mkdir -p ~/.configs/nvim
@@ -195,7 +196,7 @@ set_configs(){
 
 # config greeter
 config_greeter() {
-  echo "$PASS_INPUT" | sudo -S touch ./configs/override.conf /etc/systemd/system/getty@tt1.service.d/override.conf
+  echo "$PASS_INPUT" | sudo -S touch ${SCRIPT_PATH}/configs/override.conf /etc/systemd/system/getty@tt1.service.d/override.conf
   echo "$PASS_INPUT" | sudo -S cat > /etc/systemmd/system/getty@tt1.service.d/override.conf <<EOF
   [Service]
   ExecStart=
