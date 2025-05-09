@@ -206,6 +206,7 @@ set_configs(){
 # config greeter
 config_greeter() {
   echo "$PASS_INPUT" | sudo -S mkdir -p ${SCRIPT_PATH}/configs/override.conf /etc/systemd/system/getty@tt1.service.d/
+  echo "$PASS_INPUT" | sudo -S touch /etc/systemmd/system/getty@tt1.service.d/override.conf
   echo "$PASS_INPUT" | sudo -S cat > /etc/systemmd/system/getty@tt1.service.d/override.conf <<EOF
   [Service]
   ExecStart=
