@@ -23,7 +23,7 @@ install_snap(){
   echo -e "\n${BLUE} Installing snap package manager${GRAY}"
   echo "$PASS_INPUT" | sudo -S git clone https://aur.archlinux.org/snapd.git /opt/snapd
   echo "$PASS_INPUT" | sudo -S chown -R $USER_INPUT:$USER_INPUT /opt/snapd
-  cd -C /opt/snapd
+  echo "$PASS_INPUT" | sudo -S /opt/snapd
   makepkg -si --noconfirm snapd
   echo "$PASS_INPUT" | sudo -S systemctl enable --now snapd.service
 }
