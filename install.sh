@@ -206,12 +206,12 @@ set_configs(){
 # config greeter
 config_greeter() {
   echo "$PASS_INPUT" | sudo -S mkdir -p /etc/systemd/system/getty@tt1.service.d/
-  echo "$PASS_INPUT" | sudo -S cat > ${SCRIPT_PATH}/configs/override.conf <<EOF
-  [Service]
-  ExecStart=
-  ExecStart=-/usr/bin/agetty --autologin $USER_INPUT --noclear %I $TERM
+  cat > ${SCRIPT_PATH}/configs/override.conf <<EOF
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin $USER_INPUT --noclear %I $TERM
 EOF
-  echo "$PASS_INPUT" | sudo -S cp ${SCRIPT_PATH}/configs/override.conf /etc/systemmd/system/getty@tt1.service.d/override.conf
+  echo "$PASS_INPUT" | sudo -S cp ${SCRIPT_PATH}/configs/override.conf /etc/systemmd/system/getty@tt1.service.d/
 }
 
 main() {
