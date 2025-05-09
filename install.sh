@@ -56,13 +56,13 @@ install_pkg() {
   local package=$2
   local pkg_manager=$1
   local package_founded="_"
-  echo -e "${GREEN}==> [${pkg_manager}]${RESET} ✅ installing package ${GREEN}${package}${GRAY}"
+  echo -e "${GREEN}==> [${pkg_manager}]${RESET} installing package ${GREEN}${package}${GRAY}"
   
   if [[ "$pkg_manager" == "yay" || "$pkg_manager" == "pacman"  ]]; then
-    package_founded=$(${pkg_manager} -Q $package | grep -o "not found")
+    package_founded=$(${pkg_manager} -Q $package 2>&1 | grep -o "error")
   fi
 
-  if [[ "$package_founded" == "not found" ]]; then
+  if [[ "$package_founded" == "error" ]]; then
     if [[ "$pkg_manager" == "yay" ]]; then
       yay -S --noconfirm $package
     elif [[ "$pkg_manager" == "pacman" ]]; then
