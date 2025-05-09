@@ -57,7 +57,7 @@ install_pkg() {
   local pkg_manager=$1
   local package_founded=$(which $package | grep -o "not found")
 
-  if [[ "$package_founded" == "not found" ]]; then
+  if [[ "$package_founded" != "not found" ]]; then
     echo -e "${RESET} [${pkg_manager}] ✅ installing package ${GREEN}$package${GRAY}"
     echo " -> Already installed"
     return 1
