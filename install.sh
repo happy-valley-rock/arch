@@ -226,14 +226,14 @@ main() {
   if [[ -z "$USER_INPUT" && -z "$PASS_INPUT" && -z "$EMAIL_INPUT" ]]; then
     echo "The values cant be empty"
   else
-    #set_gpg_key
-    #install_yay
-    #install_snap
-    #update_pkgs_manager
+    set_gpg_key
+    install_yay
+    install_snap
+    update_pkgs_manager
     install_drivers
     install_all_pkgs
-    #set_configs
-    #config_greeter
+    set_configs
+    config_greeter
   fi
 
   kill $KEEP_ALIVE_PID
