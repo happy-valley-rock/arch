@@ -58,10 +58,10 @@ install_pkg() {
   
   if [[ "$pkg_manager" == "yay" ]]; then
     echo -e "${RESET} [yay] ✅ installing package ${GREEN}$package${GRAY}"
-    yay -S --print --noconfirm --quiet $package
+    yay -S --noconfirm $package
   elif [[ "$pkg_manager" == "pacman" ]]; then
     echo -e "${RESET} [pacman] ✅ installing package ${GREEN}$package${GRAY}"
-    echo "$PASS_INPUT" | sudo -S pacman -S --print --noconfirm --quiet $package
+    echo "$PASS_INPUT" | sudo -S pacman -S --noconfirm $package
   else
     echo -e "${RESET} [snap ]✅ installing package ${GREEN}$package${GRAY}"
     echo "$PASS_INPUT" | sudo -S snap install $package
