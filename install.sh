@@ -175,11 +175,11 @@ set_configs(){
   cp ${SCRIPT_PATH}/dotfiles/.zshrc ~/.zshrc
 
   ### neovim
-  mkdir -p ~/.configs/nvim
-  touch ~/.configs/nvim/init.vm
+  mkdir -p ~/.config/nvim
+  touch ~/.config/nvim/init.vm
 
   ### git
-  cp ~/dotfiles/.gitignore_global
+  cp ${SCRIPT_PATH}/dotfiles/.gitignore_global ~/.gitignore_global
   git config --global user.name "$USER_INPUT"
   git config --global user.email "$EMAIL_INPUT"
   git config --global color.ui auto
@@ -196,7 +196,7 @@ set_configs(){
 
 # config greeter
 config_greeter() {
-  echo "$PASS_INPUT" | sudo -S touch ${SCRIPT_PATH}/configs/override.conf /etc/systemd/system/getty@tt1.service.d/override.conf
+  echo "$PASS_INPUT" | sudo -S mkdir -p ${SCRIPT_PATH}/configs/override.conf /etc/systemd/system/getty@tt1.service.d/
   echo "$PASS_INPUT" | sudo -S cat > /etc/systemmd/system/getty@tt1.service.d/override.conf <<EOF
   [Service]
   ExecStart=
