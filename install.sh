@@ -31,8 +31,13 @@ install_snap(){
 install_drivers(){
   echo -e "\n${BLUE} Installing drivers${GRAY}"
   ## graphic drivers
+  install_pkg pacman dkms
+  install_pkg pacman libva-nvidia-driver
   install_pkg pacman nvidia-dkms
   #install_pkg pacman nvidia-open-dkms
+  install_pkg pacman xorg-server
+  install_pkg pacman xorg-xinit
+  
   install_pkg pacman nvidia-utils
   install_pkg pacman nvidia-settings
   install_pkg pacman lib32-nvidia-utils
@@ -95,17 +100,28 @@ update_pkgs_manager(){
 # install  dependencies
 install_all_pkgs() {
   echo -e "\n${BLUE} Install all dependencies${GRAY}"
-  install_pkg pacman hyprland
-  install_pkg pacman kitty
+  
   install_pkg pacman dunst
   install_pkg pacman grim
+  install_pkg pacman htop
+  install_pkg pacman hyprland
+  install_pkg pacman iwd
+  install_pkg pacman kitty
+  install_pkg pacman nano
+  install_pkg pacman openssh
+  install_pkg pacman polkit-kde-agent
   install_pkg pacman qt5-wayland
   install_pkg pacman qt6-wayland
   install_pkg pacman slurp
-  install_pkg pacman wofi
-  install_Pkg pacman xdg-desktop-portal-hyprland
+  install_pkg pacman smartmontools
   install_pkg pacman polkit-kde-agent
-  install_pkg pacman qt5-wayland
+  install_pkg pacman wget
+  install_pkg pacman wireless_tools
+  install_pkg pacman wofi
+  install_pkg pacman wpa_supplicant
+  install_Pkg pacman xdg-desktop-portal-hyprland
+  install_pkg pacman xdg-utils
+  
   install_pkg pacman nautilus
   install_pkg pacman hyprpaper
   install_pkg yay hyprshot
@@ -175,10 +191,16 @@ set_configs(){
   git config --global alias.rv 'reset --soft HEAD~1'
   git config --global alias.lg 'log --oneline --graph --decorate --all'
   git config --global core.excludesfile ~/.gitignore_global
+}
 
-  # config greeter
-  echo "$PASS_INPUT" | sudo -S cp ./configs/override.conf /etc/systemd/system/getty@tt1.service.d/override.conf
-  cp ./configs/override.conf /etc/systemmd/system/getty@tt1.service.d/override.conf
+# config greeter
+config_greeter() {
+  echo "$PASS_INPUT" | sudo -S touch ./configs/override.conf /etc/systemd/system/getty@tt1.service.d/override.conf
+  echo "$PASS_INPUT" | sudo -S cat > /etc/systemmd/system/getty@tt1.service.d/override.conf <<EOF
+  [Service]
+  ExecStart=
+  ExecStart=-/usr/bin/agetty --autologin $USER_INPUT --noclear %I $TERM
+EOF
 }
 
 main() {
@@ -201,6 +223,7 @@ main() {
     install_drivers
     install_all_pkgs
     set_configs
+    config_greeter
   fi
 
   kill $KEEP_ALIVE_PID
