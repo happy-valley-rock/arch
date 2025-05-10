@@ -111,6 +111,8 @@ update_pkgs_manager(){
 install_all_pkgs() {
   echo -e "\n${BLUE}==> Install all dependencies${GRAY}"
   
+  install_pkg yay stow
+
   install_pkg pacman dunst
   install_pkg pacman grim
   install_pkg pacman htop
@@ -127,7 +129,9 @@ install_all_pkgs() {
   install_pkg pacman polkit-kde-agent
   install_pkg pacman wget
   install_pkg pacman wireless_tools
-  install_pkg pacman wofi
+  #install_pkg pacman wofi
+  install_pkg yay rofi
+  install_pkg yay starship
   install_pkg pacman wpa_supplicant
   install_Pkg pacman xdg-desktop-portal-hyprland
   install_pkg pacman xdg-utils
@@ -182,6 +186,9 @@ set_configs(){
   mkdir -p ~/.config/nvim
   touch ~/.config/nvim/init.vm
 
+  ### brave
+  cp ${SCRIPT_PATH}/configs/Preferences ~/.config/BraveSoftware/Brave-Browser/Default/
+
   ### git
   cp ${SCRIPT_PATH}/dotfiles/.gitignore_global ~/.gitignore_global
   git config --global user.name "$USER_INPUT"
@@ -211,7 +218,7 @@ config_greeter() {
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USER_INPUT --noclear %I $TERM
 EOF
-  echo "$PASS_INPUT" | sudo -S cp ${SCRIPT_PATH}/configs/override.conf /etc/systemmd/system/getty@tt1.service.d/
+  sudo cp ${SCRIPT_PATH}/configs/override.conf /etc/systemmd/system/getty@tt1.service.d/
 }
 
 main() {
@@ -226,16 +233,16 @@ main() {
   
   if [[ -z "$USER_INPUT" && -z "$PASS_INPUT" && -z "$EMAIL_INPUT" ]]; then
     echo "The values cant be empty"
-  else
-    set_gpg_key
-    install_yay
-    install_snap
-    update_pkgs_manager
-    install_drivers
-    install_all_pkgs
-    set_configs
-    config_greeter
   fi
+
+  set_gpg_key
+  install_yay
+  install_snap
+  update_pkgs_manager
+  install_drivers
+  install_all_pkgs
+  set_configs
+  config_greeter
 
   kill $KEEP_ALIVE_PID
   echo -e "${RESET}"
