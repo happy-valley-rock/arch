@@ -116,9 +116,7 @@ install_all_pkgs() {
   install_pkg pacman dunst
   install_pkg pacman grim
   install_pkg pacman htop
-  install_pkg pacman hyprland
   install_pkg pacman iwd
-  install_pkg pacman kitty
   install_pkg pacman nano
   install_pkg pacman openssh
   install_pkg pacman polkit-kde-agent
@@ -129,26 +127,29 @@ install_all_pkgs() {
   install_pkg pacman polkit-kde-agent
   install_pkg pacman wget
   install_pkg pacman wireless_tools
-  #install_pkg pacman wofi
-  install_pkg yay rofi
-  install_pkg yay starship
   install_pkg pacman wpa_supplicant
   install_Pkg pacman xdg-desktop-portal-hyprland
   install_pkg pacman xdg-utils
+ 
+  #stow libraries symlinks
+  install_pkg pacman starship
+  install_pkg yay rofi
+  install_pkg pacman kitty
+  install_pkg pacman hyprland
+  install_pkg yay hyprlock
+  install_pkg pacman hyprpaper
+  install_pkg yay hypridle
+  install_pkg pacman waybar
+  install_pkg pacman zsh
   
   install_pkg pacman nautilus
-  install_pkg pacman hyprpaper
   install_pkg yay hyprshot
-  install_pkg yay hyprlock
   install_pkg yay swaync
-
-  install_pkg pacman waybar
   install_pkg pacman ttf-font-awesome
   install_pkg pacman noto-fonts
   install_pkg pacman noto-fonts-cjk
   install_pkg pacman noto-fonts-emoji
   install_pkg pacman noto-fonts-extra
-  install_pkg pacman zsh
   install_pkg pacman neovim
   install_pkg pacman yt-dlp
   install_pkg pacman gamescope
