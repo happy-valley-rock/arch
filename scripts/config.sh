@@ -1,17 +1,29 @@
 #!/bin/bash
 
 # set symlink files with stow
+set_all_stow() {
+  echo -e "\n${BLUE}==> Setting package configurations with stow${GRAY}"
+
+  set_stow hypr "~/.config/hypr/*"
+  set_stow kitty
+  set_stow nvim
+  set_stow rofi
+  set_stow starship
+  set_stow seam "~/.local/share/Steam/config/config.vdf"
+  set_stow tmux
+  set_stow waybar
+  set_stow zshrc
+}
+
 set_stow() {
-  stow hypr
-  stow kitty
-  stow nvim
-  stow rofi
-  stow starship
-  stow steam
-  stow tmux
-  stow waybar
-  stow wofi
-  stow zshrc
+	PACKAGE=$1
+	PATH_CONFIG=$2
+  echo -e "\n${BLUE}  -> config file setting for ${GREEN}${PACKAGE}${GRAY}"
+	if [[ -z "$PATH_CONFIG" ]]; then
+		echo -e "\n${BLUE}  -> delete old config in ${PATH_CONFIG}${GRAY}"
+		rm -rf $PATH_CONFIG
+	fi
+	stow -t ~ $PACKAGE
 }
 
 # configurations

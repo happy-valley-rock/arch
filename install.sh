@@ -33,8 +33,8 @@ main() {
   #set_gpg_key
   
   # pkgs.sh
-  install_drivers
-  install_all_pkgs
+  #install_drivers
+  #install_all_pkgs
 
   # config.sh
   #set_configs
