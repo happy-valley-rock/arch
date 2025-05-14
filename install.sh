@@ -39,7 +39,7 @@ main() {
   # config.sh
   #set_all_stow
   set_configs
-  config_greeter
+  #config_greeter
 
   kill $KEEP_ALIVE_PID
   echo -e "${RESET}"
