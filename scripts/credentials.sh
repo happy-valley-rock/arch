@@ -6,11 +6,12 @@ SECRET_KEY=
 SECRET_PARAM_KEY=$1
 
 read_secret_key() {
-	echo -e "\n${BLUE}==> Enter your secret key${GRAY}"
 	if [[ -z "$SECRET_PARAM_KEY" ]]; then
+		echo -e "${BLUE}==> Enter your secret key\n${GRAY}"
 		read -sp "> secret key: " SECRET_KEY
 		echo "******"
 	else
+		echo -e "${BLUE}==> Secret key detected${GRAY}"
 		SECRET_KEY=$SECRET_PARAM_KEY
 	fi
 }
@@ -64,7 +65,7 @@ set_credentials() {
 	fi
 
 	if [ -f "$CRED_FILE" ]; then
-		echo -e "\n${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
+		echo -e "${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
 		load_credentials || exit 1
 	else
 		create_credentials
