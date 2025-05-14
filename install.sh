@@ -34,12 +34,12 @@ main() {
   login
   
   # pkg_manager.sh
-  install_yay
-  install_snap
-  update_pkgs_manager
+  #install_yay
+  #install_snap
+  #update_pkgs_manager
   
   # gpg_key.sh
-  #set_gpg_key
+  set_gpg_key
   
   # pkgs.sh
   #install_drivers
