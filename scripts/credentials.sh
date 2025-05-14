@@ -65,7 +65,7 @@ set_credentials() {
 	fi
 
 	if [ -f "$CRED_FILE" ]; then
-		echo -e "${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
+		echo -e "${BLUE}==> Encrypted credentials detected. Loading...${GRAY}"
 		load_credentials || exit 1
 	else
 		create_credentials
@@ -73,7 +73,7 @@ set_credentials() {
 	fi
 
 	echo
-	echo -e "${BLUE}==>  Loaded variables:${GRAY}"
+	echo -e "${BLUE}==> Loaded variables:${GRAY}"
 	echo -e "${GREEN}  -> username: $USER_INPUT"
 	echo -e "${GREEN}  -> password: *****"
 	echo -e "${GREEN}  -> email: *****${GRAY}"
