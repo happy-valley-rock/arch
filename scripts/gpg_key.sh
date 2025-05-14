@@ -3,8 +3,8 @@
 # config gpg keys
 set_gpg_key(){
   echo -e "\n${BLUE}==> Set GPG Key${GRAY}"
-  set_gpg_key
   set_gpg_self
+  set_spotify
 }
 
 #gpg key for spotify
