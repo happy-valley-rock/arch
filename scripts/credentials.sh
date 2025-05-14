@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Encrypted file name
-CRED_FILE="${SCRIPT_PATH}/scripts/credentials.enc"
+CRED_FILE="${SCRIPT_PATH}/credentials.enc"
 SECRET_KEY=
 SECRET_PARAM_KEY=$1
 
