@@ -49,13 +49,13 @@ set_configs(){
 
 # config greeter
 config_greeter() {
-  echo "$PASS_INPUT" | sudo -S mkdir -p /etc/systemd/system/getty@tt1.service.d/
+  echo "$PASS_INPUT" | sudo -S mkdir -p /etc/systemd/system/getty@tt1.service.d
   cat > ${SCRIPT_PATH}/configs/override.conf <<EOF
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USER_INPUT --noclear %I $TERM
 EOF
-  sudo cp ${SCRIPT_PATH}/configs/override.conf /etc/systemmd/system/getty@tt1.service.d/
+  sudo cp ${SCRIPT_PATH}/configs/override.conf /etc/systemd/system/getty@tt1.service.d/
 }
 
 set_git_config() {
