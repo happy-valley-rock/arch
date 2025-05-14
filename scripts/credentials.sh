@@ -73,5 +73,3 @@ set_credentials() {
 
 	# You can now use $USER_INPUT, $PASS_INPUT, and $EMAIL_INPUT in the rest of your script
 }
-
-main
