@@ -63,10 +63,10 @@ set_credentials() {
 	fi
 
 	echo
-	echo -e "\n${BLUE}==>  Loaded variables:${GRAY}"
-	echo "${GREEN}  -> username: $USER_INPUT"
-	echo "${GREEN}  -> password: *****"
-	echo "${GREEN}  -> email: *****"
+	echo -e "${BLUE}==>  Loaded variables:${GRAY}"
+	echo -e "${GREEN}  -> username: $USER_INPUT"
+	echo -e "${GREEN}  -> password: *****"
+	echo -e "${GREEN}  -> email: *****"
 
 	# You can now use $USER_INPUT, $PASS_INPUT, and $EMAIL_INPUT in the rest of your script
 }
