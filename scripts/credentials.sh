@@ -18,7 +18,7 @@ read_secret_key() {
 
 # Function to prompt for credentials and create the encrypted file
 create_credentials() {
-	echo "\n${BLUE}==> Enter your credentials${GRAY}"
+	echo -e "\n${BLUE}==> Enter your credentials${GRAY}"
 
 	read -p "> username: " input_username
 	read -sp "> password: " input_password
@@ -36,13 +36,13 @@ create_credentials() {
 
 	# Remove temp file
 	rm -f "$temp_file"
-	echo "\n${BLUE}  -> Credentials encrypted and saved to $CRED_FILE${GRAY}"
+	echo -e "\n${BLUE}  -> Credentials encrypted and saved to $CRED_FILE${GRAY}"
 }
 
 # Function to decrypt and load the credentials into variables
 load_credentials() {
 	if [ ! -f "$CRED_FILE" ]; then
-			echo "\n${BLUE}==>  Encrypted credentials file not found${GRAY}"
+			echo -e "\n${BLUE}==>  Encrypted credentials file not found${GRAY}"
 			return 1
 	fi
 
@@ -58,7 +58,7 @@ load_credentials() {
 # Main function
 set_credentials() {
 	if [ -f "$CRED_FILE" ]; then
-		echo "\n${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
+		echo -e "\n${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
 		load_credentials || exit 1
 	else
 		create_credentials
@@ -66,10 +66,10 @@ set_credentials() {
 	fi
 
 	echo
-	echo "\n${BLUE}  -> Loaded variables:${GRAY}"
-	echo "Username: $USER_INPUT"
-	echo "Password: $PASS_INPUT"
-	echo "Email: $EMAIL_INPUT"
+	echo -e "\n${BLUE}==>  Loaded variables:${GRAY}"
+	echo "${GREEN}  -> username: $USER_INPUT"
+	echo "${GREEN}  -> password: *****"
+	echo "${GREEN}  -> email: *****"
 
 	# You can now use $USER_INPUT, $PASS_INPUT, and $EMAIL_INPUT in the rest of your script
 }
