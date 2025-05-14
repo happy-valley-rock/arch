@@ -12,7 +12,6 @@ PASS_INPUT=_
 source ${SCRIPT_PATH}/scripts/pkg_manager.sh
 source ${SCRIPT_PATH}/scripts/pkgs.sh
 source ${SCRIPT_PATH}/scripts/config.sh
-source ${SCRIPT_PATH}/scripts/stow.sh
 source ${SCRIPT_PATH}/scripts/config.sh
 
 login() {
