@@ -38,7 +38,7 @@ main() {
 
   # config.sh
   set_all_stow
-  set_configs
+  #set_configs
   #config_greeter
 
   kill $KEEP_ALIVE_PID
