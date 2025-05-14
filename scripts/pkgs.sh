@@ -59,7 +59,7 @@ install_all_pkgs() {
   install_pkg pacman waybar
   install_pkg pacman zsh
   install_pkg pacman neovim
-  install_pkg yay ghostty-bin
+  install_pkg pacman ghostty
   install_pkg yay steam
   
   install_pkg pacman nautilus

@@ -55,7 +55,7 @@ config_greeter() {
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USER_INPUT --noclear %I $TERM
 EOF
-  sudo cp ${SCRIPT_PATH}/configs/override.conf /etc/systemd/system/getty@tt1.service.d/
+  echo "$PASS_INPUT" | sudo cp ${SCRIPT_PATH}/configs/override.conf /etc/systemd/system/getty@tt1.service.d/
 }
 
 set_git_config() {
@@ -75,5 +75,6 @@ set_git_config() {
 
 set_zsh_config() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  chsh -s $(which zsh)
+  echo "$(which zsh)" | sudo tee -a /etc/shells
+  echo "$PASS_INPUT" | chsh -s "$(which zsh)"
 }

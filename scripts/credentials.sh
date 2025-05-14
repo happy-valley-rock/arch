@@ -18,10 +18,10 @@ read_secret_key() {
 
 # Function to prompt for credentials and create the encrypted file
 create_credentials() {
-	echo -e "\n${BLUE}==> Enter your credentials${GRAY}"
+  echo -e "\n${BLUE}==> Enter your credentials${GRAY}"
 
-	read -p "> username: " input_username
-	read -sp "> password: " input_password
+  read -p "> username: " input_username
+  read -sp "> password: " input_password
   echo "******"
 	read -sp "> email: " input_email
 	echo "******"
