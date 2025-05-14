@@ -13,6 +13,7 @@ source ${SCRIPT_PATH}/scripts/pkg_manager.sh
 source ${SCRIPT_PATH}/scripts/pkgs.sh
 source ${SCRIPT_PATH}/scripts/gpg_key.sh
 source ${SCRIPT_PATH}/scripts/config.sh
+source ${SCRIPT_PATH}/scripts/credentials.sh
 
 login() {
   read -p "> username: " USER_INPUT
@@ -31,7 +32,7 @@ main() {
   while true; do sudo -n true; sleep 60; done &
   KEEP_ALIVE_PID=$!
   
-  login
+  set_credentials
   
   # pkg_manager.sh
   #install_yay
@@ -39,7 +40,7 @@ main() {
   #update_pkgs_manager
   
   # gpg_key.sh
-  set_gpg_key
+  #set_gpg_key
   
   # pkgs.sh
   #install_drivers

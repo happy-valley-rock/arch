@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Encrypted file name
-CRED_FILE="${SCRIPT_PATH}/credentials.enc"
+CRED_FILE="${SCRIPT_PATH}/scripts/credentials.enc"
 # Secret passphrase for encryption
-SECRET_KEY="mysecretpassphrase"
+SECRET_KEY=
 SECRET_PARAM_KEY=$1
 
 EMAIL_INPUT=""
@@ -56,7 +56,7 @@ load_credentials() {
 }
 
 # Main function
-main() {
+set_credentials() {
 	if [ -f "$CRED_FILE" ]; then
 		echo "\n${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
 		load_credentials || exit 1
