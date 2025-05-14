@@ -58,6 +58,9 @@ install_all_pkgs() {
   install_pkg yay hypridle
   install_pkg pacman waybar
   install_pkg pacman zsh
+  install_pkg pacman neovim
+  install_pkg yay ghostty-bin
+  install_pkg yay steam
   
   install_pkg pacman nautilus
   install_pkg yay hyprshot
@@ -67,14 +70,12 @@ install_all_pkgs() {
   install_pkg pacman noto-fonts-cjk
   install_pkg pacman noto-fonts-emoji
   install_pkg pacman noto-fonts-extra
-  install_pkg pacman neovim
   install_pkg pacman yt-dlp
   install_pkg pacman gamescope
   install_pkg pacman gamemode
   install_pkg pacman mangohud
 
   install_pkg yay brave-bin
-  install_pkg yay steam
   install_pkg yay telegram-desktop-bin
   install_pkg yay protonup-qt
 

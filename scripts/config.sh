@@ -13,7 +13,7 @@ set_all_stow() {
   set_stow steam "~/.local/share/Steam/config/config.vdf"
   set_stow tmux
   set_stow waybar
-  set_stow zshrc
+  set_stow zsh
 	set_show git
 	set_stow backgrounds
 }
