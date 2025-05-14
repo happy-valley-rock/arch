@@ -3,6 +3,7 @@
 # set symlink files with stow
 set_all_stow() {
   echo -e "\n${BLUE}==> Setting package configurations with stow${GRAY}"
+	cd $SCRIPT_PATH/packages
 
   set_stow hypr "~/.config/hypr/*"
   set_stow kitty
