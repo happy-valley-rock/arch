@@ -30,11 +30,11 @@ main() {
   #update_pkgs_manager
   
   # gpg_key.sh
-  set_gpg_key
+  #set_gpg_key
   
   # pkgs.sh
-  #install_drivers
-  #install_all_pkgs
+  install_drivers
+  install_all_pkgs
 
   # config.sh
   #set_configs
