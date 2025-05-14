@@ -77,6 +77,4 @@ set_credentials() {
 	echo -e "${GREEN}  -> username: $USER_INPUT"
 	echo -e "${GREEN}  -> password: *****"
 	echo -e "${GREEN}  -> email: *****${GRAY}"
-
-	# You can now use $USER_INPUT, $PASS_INPUT, and $EMAIL_INPUT in the rest of your script
 }
