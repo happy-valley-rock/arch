@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# Encrypted file name
+CRED_FILE="${SCRIPT_PATH}/credentials.enc"
+# Secret passphrase for encryption
+SECRET_KEY="mysecretpassphrase"
+SECRET_PARAM_KEY=$1
+
+EMAIL_INPUT=""
+
+read_secret_key() {
+	if [[ -z "$SECRET_PARAM_KEY" ]]; then
+		read -p "> secret key: " SECRET_KEY
+	else
+		SECRET_KEY=$SECRET_PARAM_KEY
+	fi
+}
+
+# Function to prompt for credentials and create the encrypted file
+create_credentials() {
+	echo "\n${BLUE}==> Enter your credentials${GRAY}"
+
+	read -p "> username: " input_username
+	read -sp "> password: " input_password
+  echo "******"
+	read -p "> email: " input_email
+
+	# Create temporary plain text file
+	temp_file=$(mktemp)
+	echo "username=$input_username" > "$temp_file"
+	echo "password=$input_password" >> "$temp_file"
+	echo "email=$input_email" >> "$temp_file"
+
+	# Encrypt the file
+	openssl enc -aes-256-cbc -salt -in "$temp_file" -out "$CRED_FILE" -k "$SECRET_KEY"
+
+	# Remove temp file
+	rm -f "$temp_file"
+	echo "\n${BLUE}  -> Credentials encrypted and saved to $CRED_FILE${GRAY}"
+}
+
+# Function to decrypt and load the credentials into variables
+load_credentials() {
+	if [ ! -f "$CRED_FILE" ]; then
+			echo "\n${BLUE}==>  Encrypted credentials file not found${GRAY}"
+			return 1
+	fi
+
+	# Decrypt and evaluate the file content to set variables
+	eval $(openssl enc -aes-256-cbc -d -in "$CRED_FILE" -k "$SECRET_KEY" 2>/dev/null)
+
+	# Assign to global variables
+	USER_INPUT="$username"
+	PASS_INPUT="$password"
+	EMAIL_INPUT="$email"
+}
+
+# Main function
+main() {
+	if [ -f "$CRED_FILE" ]; then
+		echo "\n${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
+		load_credentials || exit 1
+	else
+		create_credentials
+		load_credentials
+	fi
+
+	echo
+	echo "\n${BLUE}  -> Loaded variables:${GRAY}"
+	echo "Username: $USER_INPUT"
+	echo "Password: $PASS_INPUT"
+	echo "Email: $EMAIL_INPUT"
+
+	# You can now use $USER_INPUT, $PASS_INPUT, and $EMAIL_INPUT in the rest of your script
+}
+
+main
