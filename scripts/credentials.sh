@@ -20,7 +20,8 @@ create_credentials() {
 	read -p "> username: " input_username
 	read -sp "> password: " input_password
   echo "******"
-	read -p "> email: " input_email
+	read -sp "> email: " input_email
+	echo "******"
 
 	# Create temporary plain text file
 	temp_file=$(mktemp)
@@ -54,6 +55,12 @@ load_credentials() {
 
 # Main function
 set_credentials() {
+	read_secret_key
+
+	if [[ -z "$SECRET_KEY" ]]; then
+		exit 1
+	fi
+
 	if [ -f "$CRED_FILE" ]; then
 		echo -e "${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
 		load_credentials || exit 1
