@@ -37,6 +37,7 @@ main() {
   #install_all_pkgs
 
   # config.sh
+  set_all_stow
   #set_configs
   #set_stow
   #config_greeter

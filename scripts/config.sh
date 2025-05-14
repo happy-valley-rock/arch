@@ -13,6 +13,7 @@ set_all_stow() {
   set_stow tmux
   set_stow waybar
   set_stow zshrc
+	set_stow backgrounds
 }
 
 set_stow() {
@@ -34,11 +35,11 @@ set_configs(){
   mkdir -p /home/$USER_INPUT/.local/share/applications/
 
   ### hyprland
-  cp -r ${SCRIPT_PATH}/dotfiles/hypr ~/.config/
-  cp -r ${SCRIPT_PATH}/backgrounds ~/
+  #cp -r ${SCRIPT_PATH}/dotfiles/hypr ~/.config/
+  #cp -r ${SCRIPT_PATH}/backgrounds ~/
 
   ### kitty
-  cp -r ${SCRIPT_PATH}/dotfiles/kitty ~/.config/
+  #cp -r ${SCRIPT_PATH}/dotfiles/kitty ~/.config/
 
   ### spotify
   cp ${SCRIPT_PATH}/configs/spotify.desktop ~/.local/share/applications/spotify.desktop
