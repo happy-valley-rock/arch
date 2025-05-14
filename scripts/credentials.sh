@@ -6,6 +6,7 @@ SECRET_KEY=
 SECRET_PARAM_KEY=$1
 
 read_secret_key() {
+	echo -e "\n${BLUE}==> Enter your secret key${GRAY}"
 	if [[ -z "$SECRET_PARAM_KEY" ]]; then
 		read -p "> secret key: " SECRET_KEY
 	else
