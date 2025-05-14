@@ -55,7 +55,7 @@ load_credentials() {
 # Main function
 set_credentials() {
 	if [ -f "$CRED_FILE" ]; then
-		echo -e "\n${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
+		echo -e "${BLUE}==>  Encrypted credentials detected. Loading...${GRAY}"
 		load_credentials || exit 1
 	else
 		create_credentials
@@ -66,7 +66,7 @@ set_credentials() {
 	echo -e "${BLUE}==>  Loaded variables:${GRAY}"
 	echo -e "${GREEN}  -> username: $USER_INPUT"
 	echo -e "${GREEN}  -> password: *****"
-	echo -e "${GREEN}  -> email: *****"
+	echo -e "${GREEN}  -> email: *****${GRAY}"
 
 	# You can now use $USER_INPUT, $PASS_INPUT, and $EMAIL_INPUT in the rest of your script
 }
