@@ -33,7 +33,7 @@ create_credentials() {
 
 	# Remove temp file
 	rm -f "$temp_file"
-	echo -e "\n${BLUE}  -> Credentials encrypted and saved to $CRED_FILE${GRAY}"
+	echo -e "${BLUE}  -> Credentials encrypted and saved to $CRED_FILE${GRAY}"
 }
 
 # Function to decrypt and load the credentials into variables
