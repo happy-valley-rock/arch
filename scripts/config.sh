@@ -21,7 +21,7 @@ set_stow() {
 	PACKAGE=$1
 	PATH_CONFIG=$2
   echo -e "${BLUE}==> ${RESET}config file setting for ${GREEN}${PACKAGE}${GRAY}"
-	if [ -z "$PATH_CONFIG" ]; then
+	if [[ ! -z "$PATH_CONFIG" ]]; then
 		echo -e "${GRAY}  -> delete old config in ${PATH_CONFIG}${GRAY}"
 		rm -rf $PATH_CONFIG
 	fi
