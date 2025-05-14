@@ -15,9 +15,6 @@ source ${SCRIPT_PATH}/scripts/gpg_key.sh
 source ${SCRIPT_PATH}/scripts/config.sh
 source ${SCRIPT_PATH}/scripts/credentials.sh
 
-header() {
-  
-}
 
 main() {
   sudo -v
