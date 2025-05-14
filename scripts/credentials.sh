@@ -2,11 +2,8 @@
 
 # Encrypted file name
 CRED_FILE="${SCRIPT_PATH}/scripts/credentials.enc"
-# Secret passphrase for encryption
 SECRET_KEY=
 SECRET_PARAM_KEY=$1
-
-EMAIL_INPUT=""
 
 read_secret_key() {
 	if [[ -z "$SECRET_PARAM_KEY" ]]; then
