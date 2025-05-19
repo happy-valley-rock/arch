@@ -1,0 +1,49 @@
+! --- Cappuccino Dark Theme for xterm ---
+
+Xft.dpi: 100
+
+! Background & foreground
+XTerm*background:  #2e2a27
+XTerm*foreground:  #f5e0dc
+
+! Cursor
+XTerm*cursorColor: #d6b89c
+
+! Color palette (16 colores base)
+XTerm*color0:  #2e2a27
+XTerm*color1:  #b4637a
+XTerm*color2:  #a6c37e
+XTerm*color3:  #e0b089
+XTerm*color4:  #7eb7c9
+XTerm*color5:  #c490d1
+XTerm*color6:  #8abeb7
+XTerm*color7:  #d6cfc7
+XTerm*color8:  #7e756e
+XTerm*color9:  #d37b8f
+XTerm*color10: #b8e994
+XTerm*color11: #ffda9e
+XTerm*color12: #9cd9f0
+XTerm*color13: #e6b0f6
+XTerm*color14: #a8e8e1
+XTerm*color15: #ffffff
+
+! Fuente
+XTerm*faceName: JetBrainsMono Nerd Font
+XTerm*faceSize: 12
+
+! Habilitar el scroll con el mouse
+XTerm*scrollBar: false
+XTerm*saveLines: 10000
+XTerm*scrollKey: true
+XTerm*scrollTtyOutput: false
+
+! Clipboard (Ctrl+Shift+C / V)
+XTerm*VT100.translations: #override \
+  Shift <KeyPress> Insert: insert-selection(CLIPBOARD) \n\
+  Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
+
+! Permitir selección con doble click
+XTerm*on2Clicks: regex([[:alnum:]]+)
+XTerm*on3Clicks: line
+

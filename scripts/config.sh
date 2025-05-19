@@ -1,21 +1,34 @@
 #!/bin/bash
 
+packages=""
+
 # set symlink files with stow
 set_all_stow() {
   echo -e "\n${BLUE}==> Setting package configurations with stow${GRAY}"
-	cd $SCRIPT_PATH/packages	
+	cd ${SCRIPT_PATH}/packages
 
-  set_stow hypr "~/.config/hypr/*"
-  set_stow kitty
-  set_stow nvim
-  set_stow rofi
-  set_stow starship
-  set_stow steam "~/.local/share/Steam/config/config.vdf"
-  set_stow tmux
-  set_stow waybar
-  set_stow zsh
-	set_show git
-	set_stow backgrounds
+  get_packages
+
+  for package in $packages; do
+    if [ $package == "hypr" ]; then
+      set_stow $package "~/.config/hypr/*"
+    elif [ $package == "steam" ]; then
+      set_stow $package "~/.local/share/Steam/config/config.vdf"
+    else
+      set_stow $package
+    fi
+  done
+}
+
+adopt_all_stow() {
+  echo -e "\n${BLUE}==> Adopt package configurations with stow${GRAY}"
+	cd ${SCRIPT_PATH}/packages
+
+  get_packages
+
+  for package in $packages; do
+    adopt_stow $package
+  done
 }
 
 set_stow() {
@@ -29,22 +42,25 @@ set_stow() {
 	stow -t ~ $PACKAGE
 }
 
+adopt_stow() {
+	PACKAGE=$1
+  echo -e "${BLUE}  -> ${RESET}config file setting for ${GREEN}${PACKAGE}${GRAY}"
+	stow --adopt $PACKAGE
+}
+
+get_packages() {
+  packages=$(ls -1 "${SCRIPT_PATH}/packages/" | grep -E '^.*/?$')
+}
+
 # configurations
-set_configs(){
-	set_git_config
-	set_zsh_config
-
+set_configs() {
   echo -e "\n${BLUE}==> Setting some configurations${GRAY}"
-
-  ## apps config
-  #mkdir -p /home/$USER_INPUT/.local/share/applications/
-
-  ### spotify
-  # cp ${SCRIPT_PATH}/configs/spotify.desktop ~/.local/share/applications/spotify.desktop
-  # echo "$PASS_INPUT" | sudo -S xdg-mime default spotify.desktop x-scheme-handler/spotify
-
-  ### brave
-  #cp ${SCRIPT_PATH}/configs/Preferences ~/.config/BraveSoftware/Brave-Browser/Default/
+  
+  set_git_config
+	set_zsh_config
+  set_java_version
+  set_docker
+  config_greeter
 }
 
 # config greeter
@@ -77,4 +93,24 @@ set_zsh_config() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   echo "$(which zsh)" | sudo tee -a /etc/shells
   echo "$PASS_INPUT" | chsh -s "$(which zsh)"
+}
+
+set_java_version() {
+  echo "$PASS_INPUT" | sudo archlinux-java set java-17-openjdk
+}
+
+set_docker() {
+  echo "$PASS_INPUT" | sudo systemctl enable docker
+  echo "$PASS_INPUT" | sudo systemctl start docker
+  echo "$PASS_INPUT" | sudo usermod -aG docker $USER_INPUT
+}
+
+set_blueman() {
+  echo "$PASS_INPUT" | sudo systemctl enable bluetooth.service
+  echo "$PASS_INPUT" | sudo systemctl start bluetooth.service
+}
+
+set_pipewire() {
+  systemctl --user daemon-reexec
+  systemctl --user restart pipewire.service pipewire-pulse.service wireplumber.service
 }

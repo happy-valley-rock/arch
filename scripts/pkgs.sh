@@ -22,6 +22,13 @@ install_drivers(){
   install_pkg pacman bluez
   install_pkg pacman bluez-utils
   echo "$PASS_INPUT" | sudo -S systemctl enable --now bluetooth
+
+  ### audio drivers
+  install_pkg pacman pipewire
+  install_pkg pacman pipewire-pulse
+  install_pkg pacman pipewire-alsa
+  install_pkg pacman pipewire-jack
+  install_pkg pacman wireplumber 
 }
 
 # install  dependencies
@@ -61,11 +68,15 @@ install_all_pkgs() {
   install_pkg pacman neovim
   install_pkg pacman ghostty
   install_pkg yay steam
-  
+  install_pkg pacman xterm
+  install_pkg pacman tmux
+  install_pkg pacman firefox
+
   install_pkg pacman nautilus
   install_pkg yay hyprshot
   install_pkg yay swaync
   install_pkg pacman ttf-font-awesome
+  install_pkg pacman ttf-jetbrains-mono
   install_pkg pacman noto-fonts
   install_pkg pacman noto-fonts-cjk
   install_pkg pacman noto-fonts-emoji
@@ -75,9 +86,18 @@ install_all_pkgs() {
   install_pkg pacman gamemode
   install_pkg pacman mangohud
 
-  install_pkg yay brave-bin
+  #install_pkg yay brave-bin
   install_pkg yay telegram-desktop-bin
   install_pkg yay protonup-qt
+  install_pkg pacman unzip
+  install_pkg pacman jdk17-openjdk
+  install_pkg pacman docker
+  install_pkg pacman docker-compose
+  install_pkg yay dbeaver-ce
+  install_pkg yay postman-bin
+
+  install_pkg pacman blueman
+  install_pkg pacman pavucontrol
 
   install_pkg snap spotify
   install_pkg snap discord
